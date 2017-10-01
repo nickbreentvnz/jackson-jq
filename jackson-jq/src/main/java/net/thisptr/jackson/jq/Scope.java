@@ -1,28 +1,20 @@
 package net.thisptr.jackson.jq;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Enumeration;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Map.Entry;
-import java.util.ServiceLoader;
-import java.util.TreeMap;
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.MappingIterator;
 import com.fasterxml.jackson.databind.ObjectMapper;
-
 import net.thisptr.jackson.jq.exception.JsonQueryException;
 import net.thisptr.jackson.jq.internal.BuiltinFunction;
 import net.thisptr.jackson.jq.internal.JsonQueryFunction;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.URL;
+import java.util.*;
+import java.util.Map.Entry;
 
 public class Scope {
 	private static final ObjectMapper DEFAULT_MAPPER = new ObjectMapper();
@@ -146,11 +138,6 @@ public class Scope {
 		return RootScopeHolder.INSTANCE;
 	}
 
-	private static final String resolvePath(final Class<?> clazz, final String name) {
-		final String base = clazz.getName();
-		return base.substring(0, base.lastIndexOf('.')).replace('.', '/') + '/' + name;
-	}
-
 	private static List<JqJson> loadConfig(final ClassLoader loader, final String path) throws IOException {
 		final List<JqJson> result = new ArrayList<>();
 		final Enumeration<URL> iter = loader.getResources(path);
@@ -166,14 +153,11 @@ public class Scope {
 	}
 
 	private static List<JqJson> loadConfig() throws IOException {
-		ClassLoader loader = Thread.currentThread().getContextClassLoader();
-		if (loader == null)
-			loader = Scope.class.getClassLoader();
-		return loadConfig(loader, resolvePath(Scope.class, "jq.json"));
+		return loadConfig(Scope.class.getClassLoader(), "net/thisptr/jackson/jq/jq.json");
 	}
 
 	private void loadBuiltinFunctions() {
-		for (final Function fn : ServiceLoader.load(Function.class)) {
+		for (final Function fn : ServiceLoader.load(Function.class, this.getClass().getClassLoader())) {
 			final BuiltinFunction annotation = fn.getClass().getAnnotation(BuiltinFunction.class);
 			if (annotation == null)
 				continue;
