@@ -18,6 +18,7 @@ import java.util.Map.Entry;
 
 public class Scope {
 	private static final ObjectMapper DEFAULT_MAPPER = new ObjectMapper();
+	public static final String JQ_JSON = "net/thisptr/jackson/jq/jq.json";
 
 	private static final class RootScopeHolder {
 		public static final Scope INSTANCE = new Scope(null);
@@ -153,7 +154,10 @@ public class Scope {
 	}
 
 	private static List<JqJson> loadConfig() throws IOException {
-		return loadConfig(Scope.class.getClassLoader(), "net/thisptr/jackson/jq/jq.json");
+		final List<JqJson> jqJsons = new ArrayList<>();
+		jqJsons.addAll(loadConfig(Scope.class.getClassLoader(), JQ_JSON));
+		jqJsons.addAll(loadConfig(Thread.currentThread().getContextClassLoader(), JQ_JSON));
+		return jqJsons;
 	}
 
 	private void loadBuiltinFunctions() {
