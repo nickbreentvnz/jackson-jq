@@ -8,14 +8,14 @@
 	<parent>
 		<groupId>net.thisptr</groupId>
 		<artifactId>jackson-jq-parent</artifactId>
-		<version>0.0.7-OSGi</version>
+		<version>0.0.8-OSGi</version>
 	</parent>
 
 	<dependencies>
 		<dependency>
 			<groupId>net.thisptr</groupId>
 			<artifactId>jackson-jq</artifactId>
-			<version>0.0.7-OSGi</version>
+			<version>${project.parent.version}</version>
 		</dependency>
 	</dependencies>
 </project>
