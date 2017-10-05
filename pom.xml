@@ -140,6 +140,9 @@
 	<profiles>
 		<profile>
 			<id>nexus</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
 			<build>
 				<plugins>
 					<plugin>
