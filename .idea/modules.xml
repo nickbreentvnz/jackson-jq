@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/jackson-jq/jackson-jq.iml" filepath="$PROJECT_DIR$/jackson-jq/jackson-jq.iml" />
+      <module fileurl="file://$PROJECT_DIR$/jackson-jq-cli/jackson-jq-cli.iml" filepath="$PROJECT_DIR$/jackson-jq-cli/jackson-jq-cli.iml" />
+      <module fileurl="file://$PROJECT_DIR$/jackson-jq-extra/jackson-jq-extra.iml" filepath="$PROJECT_DIR$/jackson-jq-extra/jackson-jq-extra.iml" />
+      <module fileurl="file://$PROJECT_DIR$/jackson-jq-parent.iml" filepath="$PROJECT_DIR$/jackson-jq-parent.iml" />
+    </modules>
+  </component>
+</project>
