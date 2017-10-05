@@ -4,7 +4,7 @@
 	<groupId>net.thisptr</groupId>
 	<artifactId>jackson-jq-parent</artifactId>
 	<packaging>pom</packaging>
-	<version>0.0.8</version>
+	<version>0.0.8-SNAPSHOT</version>
 	<name>${project.groupId}:${project.artifactId}</name>
 	<description>jq for Jackson JSON Processor</description>
 	<url>https://github.com/eiiches/jackson-jq</url>
