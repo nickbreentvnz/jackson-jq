@@ -25,6 +25,7 @@ public class JsonQueryFunction implements Function {
 		this.closure = closure;
 	}
 
+	@Deprecated
 	public JsonQueryFunction(final String name, final List<String> params, final JsonQuery body) {
 		this(name, params, body, Scope.rootScope());
 	}
